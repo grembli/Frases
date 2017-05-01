@@ -41,11 +41,33 @@ public class GenerarFrases {
      */ 
     
     public static String generar(){
-        
+        String frase_montada="";    
+        String[] str1,str2,str3;
         /* 
          AQUI VIENE TODO EL GENERAR Y LOS SELECT PARA PILLAR LOS SEGMENTOS DE FRASES
          */
+        /**
+         * str1= new String["select count(frase1) from frases;"];
+         * str1[i]=("Select frase1 from frases where frase1="+i);
+         * 
+         * 
+         * frase1=Select frase1 from frases
+         * frase2=Select frase2 from frases
+         * frase3=Select frase3 from frases
+         * 
+         */ 
         
-    return "";
+        /**
+         * for(int i =0;i<str1.length;i++){
+         *     for(int j=0;j<str2.length;j++){
+         *          for(int k=0;k<str3.length;k++){
+         *              frase_montada=str1[i]+" "+str2[j]+" "+str2[k];
+         *          }
+         *     } 
+         * }
+         */
+        
+        
+    return frase_montada;
     }
 }
