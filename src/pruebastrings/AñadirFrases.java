@@ -38,6 +38,7 @@ public class AñadirFrases {
     
     /**
      * Añade segmentos a la bbdd para poder usar en generar
+     * Conecta con usuario 'Pruebas_Insert' y contraseña 'pruebas'
      */
     public static void anadir(){
     
