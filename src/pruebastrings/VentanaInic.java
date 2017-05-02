@@ -11,11 +11,16 @@ package pruebastrings;
  */
 public class VentanaInic extends javax.swing.JFrame {
 
+        String seg1=""; 
+        String seg2="";
+        String seg3 ="";
+
     /**
      * Creates new form VentanaInic
      */
     public VentanaInic() {
         initComponents();
+        
     }
 
     /**

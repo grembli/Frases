@@ -5,6 +5,8 @@
  */
 package pruebastrings;
 
+import java.awt.Frame;
+
 /**
  *
  * @author Jose
@@ -14,9 +16,11 @@ public class VentanaAnadir extends javax.swing.JDialog {
     /**
      * Creates new form VentanaAnadir
      */
+    private VentanaInic padre;
     public VentanaAnadir(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        padre = (VentanaInic) parent;
     }
 
     /**
@@ -46,6 +50,11 @@ public class VentanaAnadir extends javax.swing.JDialog {
         jLabel3.setText("SEGMENTO 3");
 
         BTN_ANADIR.setText("AÑADIR");
+        BTN_ANADIR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_ANADIRActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,6 +109,14 @@ public class VentanaAnadir extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BTN_ANADIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_ANADIRActionPerformed
+        padre.seg1=TXF_1.getText();
+        padre.seg2=TXF_2.getText();
+        padre.seg3=TXF_3.getText();
+        
+        AñadirFrases.anadir(padre.seg1, padre.seg2, padre.seg3);
+    }//GEN-LAST:event_BTN_ANADIRActionPerformed
 
     /**
      * @param args the command line arguments

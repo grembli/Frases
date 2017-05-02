@@ -111,6 +111,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="A&#xd1;ADIR"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_ANADIRActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
