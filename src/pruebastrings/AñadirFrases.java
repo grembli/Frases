@@ -42,7 +42,7 @@ public class AñadirFrases {
             
             
             
-            st.executeUpdate("INSERT INTO frases (frase1,frase2,frase3) VALUES ("+seg1+","+seg2+","+seg3+");");
+            st.executeUpdate("INSERT INTO frases (frase1,frase2,frase3) VALUES ('"+seg1+"','"+seg2+"','"+seg3+"');");
             
            
                 
