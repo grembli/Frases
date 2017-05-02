@@ -99,7 +99,7 @@ public class GenerarFrases {
         for (int i = 0; i < ar.size(); i++) {
             for (int j = 0; j < ar1.size(); j++) {
                 for (int k = 0; k < ar2.size(); k++) {
-                    frase_montada = ar.get(i) + " " + ar.get(j) + " " + ar.get(k);
+                    frase_montada = ar.get(i) + " " + ar1.get(j) + " " + ar2.get(k);
                     System.out.println(frase_montada);
                 }
             }
