@@ -17,6 +17,9 @@ public class PruebaStrings {
     public static void main(String[] args) {
         VentanaInic vi = new VentanaInic();
         vi.setVisible(true);
+        String seg1=""; 
+        String seg2="";
+        String seg3 ="";
     }
     
 }
