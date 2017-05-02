@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -54,8 +55,10 @@ public class GenerarFrases {
 
     public static String generar() {
         String frase_montada = "";
-        String[] str1=null, str2=null, str3=null;
-        int i=0,f=0;
+        ArrayList<String> ar = new ArrayList<String>();
+        ArrayList<String> ar1 = new ArrayList<String>();
+        ArrayList<String> ar2 = new ArrayList<String>();
+        
         /* 
          AQUI VIENE TODO EL GENERAR Y LOS SELECT PARA PILLAR LOS SEGMENTOS DE FRASES
          */
@@ -76,14 +79,15 @@ public class GenerarFrases {
             //Statement tiene muchos mÃ©todos, pero hay dos interesentantes: executeUpdate() y executeQuery(). 
 
             Statement st = conexion.createStatement();
-            ResultSet rs = st.executeQuery("SELECT frase1 FROM frases");
+            ResultSet rs = st.executeQuery("SELECT * FROM frases");
                
             while (rs.next()) {
                 //System.out.println("nombre="+rs.getObject("nombre")+
                 //", apellidos="+rs.getObject("apellidos")+
                 //", telefono="+rs.getObject("telefono"));
-                System.out.println(rs.getObject("frase1"));
-                
+                ar.add((String) rs.getObject("frase1"));
+                ar1.add((String) rs.getObject("frase2"));
+                ar2.add((String) rs.getObject("frase3"));
             }
                 
             rs.close();
@@ -92,13 +96,13 @@ public class GenerarFrases {
             System.out.println("Problema con BD:" + e.getMessage());
         }
 
-//        for (i = 0; i < str1.length; i++) {
-//            for (int j = 0; j < str2.length; j++) {
-//                for (int k = 0; k < str3.length; k++) {
-//                    frase_montada = str1[i] + " " + str2[j] + " " + str2[k];
-//                }
-//            }
-//        }
+        for (int i = 0; i < ar.size(); i++) {
+            for (int j = 0; j < ar1.size(); j++) {
+                for (int k = 0; k < ar2.size(); k++) {
+                    frase_montada = ar.get(i) + " " + ar.get(j) + " " + ar.get(k);
+                }
+            }
+        }
 
         return frase_montada;
     }
