@@ -54,7 +54,8 @@ public class GenerarFrases {
 
     public static String generar() {
         String frase_montada = "";
-        String[] str1, str2, str3;
+        String[] str1=null, str2=null, str3=null;
+        int i=0,f=0;
         /* 
          AQUI VIENE TODO EL GENERAR Y LOS SELECT PARA PILLAR LOS SEGMENTOS DE FRASES
          */
@@ -71,30 +72,33 @@ public class GenerarFrases {
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://192.168.1.128/prueba", "Prueba_select", "pruebas");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/prueba", "Pruebas_select", "pruebas");
             //Statement tiene muchos mÃ©todos, pero hay dos interesentantes: executeUpdate() y executeQuery(). 
 
             Statement st = conexion.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM Contacto");
+            ResultSet rs = st.executeQuery("SELECT frase1 FROM frases");
+               
             while (rs.next()) {
                 //System.out.println("nombre="+rs.getObject("nombre")+
                 //", apellidos="+rs.getObject("apellidos")+
                 //", telefono="+rs.getObject("telefono"));
-                str1[i]=rs.getObject("frase1");
+                System.out.println(rs.getObject("frase1"));
+                
             }
+                
             rs.close();
 
         } catch (Exception e) {
             System.out.println("Problema con BD:" + e.getMessage());
         }
 
-        for (int i = 0; i < str1.length; i++) {
-            for (int j = 0; j < str2.length; j++) {
-                for (int k = 0; k < str3.length; k++) {
-                    frase_montada = str1[i] + " " + str2[j] + " " + str2[k];
-                }
-            }
-        }
+//        for (i = 0; i < str1.length; i++) {
+//            for (int j = 0; j < str2.length; j++) {
+//                for (int k = 0; k < str3.length; k++) {
+//                    frase_montada = str1[i] + " " + str2[j] + " " + str2[k];
+//                }
+//            }
+//        }
 
         return frase_montada;
     }
