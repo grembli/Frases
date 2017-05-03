@@ -163,7 +163,7 @@ public class VentanaInic extends javax.swing.JFrame {
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/prueba", "Pruebas_root", "cagoenla");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/test", "Pruebas_root", "cagoenla");
             //Statement tiene muchos mÃ©todos, pero hay dos interesentantes: executeUpdate() y executeQuery(). 
 
             Statement st = conexion.createStatement();
