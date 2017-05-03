@@ -5,6 +5,10 @@
  */
 package pruebastrings;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
 /**
  *
  * @author Jose
@@ -20,7 +24,7 @@ public class VentanaInic extends javax.swing.JFrame {
      */
     public VentanaInic() {
         initComponents();
-        
+        AnadirBBDD();
     }
 
     /**
@@ -154,4 +158,21 @@ public class VentanaInic extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    private void AnadirBBDD() {
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/prueba", "Pruebas_root", "cagoenla");
+            //Statement tiene muchos mÃ©todos, pero hay dos interesentantes: executeUpdate() y executeQuery(). 
+
+            Statement st = conexion.createStatement();
+
+            st.executeUpdate("CREATE DATABASE IF NOT EXISTS prueba;");
+            st.executeUpdate("CREATE TABLE IF NOT EXISTS frases (frase1 varchar(100),frase2 varchar(100),frase3 varchar(100)");
+
+        } catch (Exception e) {
+            System.out.println("Problema con BD:" + e.getMessage());
+        }
+    }
 }
