@@ -7,6 +7,7 @@ package pruebastrings;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -24,7 +25,7 @@ public class VentanaInic extends javax.swing.JFrame {
      */
     public VentanaInic() {
         initComponents();
-        AnadirBBDD();
+        
     }
 
     /**
@@ -41,6 +42,7 @@ public class VentanaInic extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        BTN_NUEVA = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,22 +65,32 @@ public class VentanaInic extends javax.swing.JFrame {
 
         jButton3.setText("Cambiar Cosas");
 
+        BTN_NUEVA.setText("Nueva BBDD");
+        BTN_NUEVA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_NUEVAActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addGap(25, 25, 25))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BTN_NUEVA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,6 +102,8 @@ public class VentanaInic extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BTN_NUEVA, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -115,6 +129,24 @@ public class VentanaInic extends javax.swing.JFrame {
         VentanaAnadir va = new VentanaAnadir(this,true);
         va.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void BTN_NUEVAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_NUEVAActionPerformed
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/test", "Pruebas_root", "cagoenla");
+            //Statement tiene muchos mÃ©todos, pero hay dos interesentantes: executeUpdate() y executeQuery(). 
+
+            Statement st = conexion.createStatement();
+            st.executeUpdate("DROP DATABASE IF EXISTS prueba");
+            st.executeUpdate("CREATE DATABASE prueba;");
+            st.execute("USE prueba;");
+            st.executeUpdate("CREATE TABLE frases (frase1 varchar(100),frase2 varchar(100),frase3 varchar(100));");
+
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Problema con BD:" + e.getMessage());
+        }
+    }//GEN-LAST:event_BTN_NUEVAActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,6 +184,7 @@ public class VentanaInic extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BTN_NUEVA;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -159,20 +192,6 @@ public class VentanaInic extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
-    private void AnadirBBDD() {
-        try {
-
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/test", "Pruebas_root", "cagoenla");
-            //Statement tiene muchos mÃ©todos, pero hay dos interesentantes: executeUpdate() y executeQuery(). 
-
-            Statement st = conexion.createStatement();
-
-            st.executeUpdate("CREATE DATABASE IF NOT EXISTS prueba;");
-            st.executeUpdate("CREATE TABLE IF NOT EXISTS frases (frase1 varchar(100),frase2 varchar(100),frase3 varchar(100)");
-
-        } catch (Exception e) {
-            System.out.println("Problema con BD:" + e.getMessage());
-        }
-    }
+    
+        
 }
